@@ -1,10 +1,10 @@
-require "formula"
-
 class Mlt < Formula
   homepage "http://www.mltframework.org/"
-  url "https://downloads.sourceforge.net/mlt/mlt/mlt-0.9.2.tar.gz"
-  sha1 "eb1cdb8a1d9e69512716431054e5da7eb3bedb6d"
-  revision 1
+  url "https://downloads.sourceforge.net/mlt/mlt/mlt-0.9.6.tar.gz"
+  mirror "https://mirrors.kernel.org/debian/pool/main/m/mlt/mlt_0.9.6.orig.tar.gz"
+  sha256 "ab999992828a03dadbf62f6a131aada776cfd7afe63a94d994877fdba31a3000"
+
+  head "http://github.com/mltframework/mlt.git"
 
   bottle do
     sha1 "8a672be9b09bf79c099755f822afd7837ee715a9" => :mavericks
@@ -39,8 +39,13 @@ class Mlt < Formula
     args << "--disable-gtk" if build.without? "gtk+"
 
     system "./configure", *args
-
     system "make"
     system "make", "install"
+  end
+
+  test do
+    system bin/"melt", test_fixtures("test.mp3"),
+           "-serialize", testpath/"test.melt"
+    File.exist? testpath/"test.melt"
   end
 end
