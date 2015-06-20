@@ -36,20 +36,56 @@ class DockerMachine < Formula
     url "https://github.com/Sirupsen/logrus.git", :revision => "21d4508646ae56d79244bd9046c1df63a5fa8c37"
   end
 
-  go_resource "github.com/docker/machine" do
-    url "https://github.com/docker/machine.git", :revision => "0a251fe434d868165cca28200ffd71f16abb5c10" # the 0.3.0 tag
+  go_resource "github.com/MSOpenTech/azure-sdk-for-go" do
+    url "https://github.com/Azure/azure-sdk-for-go.git",
+        :revision => "1c33d6fdfc4c82cbf9a099896f43dae4966afa67"
   end
+
+  go_resource "github.com/vmware/govcloudair" do
+    url "https://github.com/vmware/govcloudair.git",
+        :revision => "0d7be903f950c035d6e95eabfd9b011a507f4488"
+  end
+
+  go_resource "github.com/smartystreets/go-aws-auth" do
+    url "https://github.com/smartystreets/go-aws-auth.git",
+        :revision => "b84d3187e4c5c84198d634ab9502bd94cac10d29"
+  end
+
+  go_resource "github.com/rackspace/gophercloud" do
+    url "https://github.com/rackspace/gophercloud.git",
+        :revision => "85e74bf417378f06c0ebffbdf9ffcae5ad1f5018"
+  end
+
+  go_resource "github.com/digitalocean/godo" do
+    url "https://github.com/digitalocean/godo.git",
+        :revision => "e2a34fae5e6770f1dfd9c27268e3a1745743fb0c"
+  end
+
+  go_resource "github.com/docker/docker" do
+    url "https://github.com/docker/docker.git",
+        :revision => "c3997daeb5db24fb1bd131d00cf3e7b87c2fe512"
+  end
+
+  go_resource "golang.org/x/oauth2" do
+    url "https://github.com/golang/oauth2.git",
+        :revision => "b5adcc2dcdf009d0391547edc6ecbaff889f5bb9"
+  end
+
+  # go_resource "github.com/pmezard/go-difflib" do
+  # end
 
   def install
     ENV["GOPATH"] = buildpath
+    # ENV["GOROOT"] = buildpath
+    mkdir_p buildpath/"src/github.com/docker/"
+    ln_sf buildpath, buildpath/"src/github.com/docker/machine"
     Language::Go.stage_deps resources, buildpath/"src"
 
-    cd "src/github.com/tools/godep" do
-      system "go", "install"
-    end
+    # cd "src/github.com/tools/godep" do
+    #   system "go", "install"
+    # end
 
-    system "./bin/godep", "go", "build", "-o", "docker-machine", "."
-    bin.install "docker-machine"
+    system "go", "build", "-o", bin/"docker-machine", "main.go"
   end
 
   test do
