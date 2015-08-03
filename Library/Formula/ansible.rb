@@ -43,6 +43,11 @@ class Ansible < Formula
     sha256 "e713da45c96ca53a3a8b48140d4120374db622df16ab71759c9ceb5b8d46fe7c"
   end
 
+  resource "passlib" do
+    url "https://pypi.python.org/packages/source/p/passlib/passlib-1.6.4.tar.gz"
+    sha256 "d41bd7a2d22f9bd7e19ff4eed0eea2316eb737f3ec6a7c361dde6b2785b08cdc"
+  end
+
   #
   # Required by the 'paramiko' core module
   # https://github.com/paramiko/paramiko)
