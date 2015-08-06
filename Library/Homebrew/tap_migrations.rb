@@ -8,6 +8,7 @@ TAP_MIGRATIONS = {
   "appledoc" => "homebrew/boneyard",
   "appswitch" => "homebrew/binary",
   "archivemount" => "homebrew/fuse",
+  "at-spi2-core" => "homebrew/x11",
   "atari++" => "homebrew/x11",
   "auctex" => "homebrew/tex",
   "authexec" => "homebrew/boneyard",
