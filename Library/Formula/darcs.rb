@@ -5,8 +5,9 @@ class Darcs < Formula
 
   desc "Distributed version control system that tracks changes, via Haskell"
   homepage "http://darcs.net/"
-  url "http://darcs.net/releases/darcs-2.10.0.tar.gz"
-  sha256 "52b3db3f7b64a4306585b96af7b5887f62ba54f6e9c3bdbed9b6a18d97f16b36"
+  url "http://darcs.net/releases/darcs-2.10.1.tar.gz"
+  mirror "https://mirrors.kernel.org/debian/pool/main/d/darcs/darcs_2.10.1.orig.tar.gz"
+  sha256 "f1ef65b43780e7593ca1afdae5ecf44ed91d62cc1be360693a52c5ff7b57ee94"
 
   bottle do
     sha256 "66086e078cdb111cf517313997a29044d8f3c16e45bdcdc06ad438a37d6d0c32" => :yosemite
